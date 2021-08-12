@@ -28,7 +28,6 @@
 /* eslint-disable */
 import { Chat } from 'vue-quick-chat'
 import 'vue-quick-chat/dist/vue-quick-chat.css'
-import { io } from 'socket.io-client'
 import defaultConfigVueQuick from '~/assets/default-config-chat.js'
 
 export default {
@@ -37,8 +36,7 @@ export default {
     },
     data() {
         return {
-            // instanciar o Socket.io
-            socket: io(),
+
 
             // Dados Trabalhados
             chatTitle: 'Chat',
@@ -65,18 +63,9 @@ export default {
         }
     },
     mounted(){
-        this.$axios.$get('/ws/init')
-        .then(resp =>{
-            this.socket.on('receivedMsg', msg => this.onReceivedMessage(msg));
-        })
     },
     methods: {
-        onReceivedMessage(message){
-            console.log(message);
-            this.messages.push(message);
-        },
         onMessageSubmit(message) {
-            this.socket.emit('sendMsg', message)
             this.messages.push(message);
         },
     }

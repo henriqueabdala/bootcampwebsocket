@@ -35,9 +35,6 @@ export default {
     },
     data() {
         return {
-            // instanciar o Socket.io
-            socket: io(),
-
             // Dados Trabalhados
             chatTitle: 'Chat',
             myself: {
@@ -63,18 +60,10 @@ export default {
         }
     },
     mounted(){
-        this.$axios.$get('/ws/init')
-        .then(resp =>{
-            this.socket.on('receivedMsg', msg => this.onReceivedMessage(msg));
-        })
+
     },
     methods: {
-        onReceivedMessage(message){
-            console.log(message);
-            this.messages.push(message);
-        },
         onMessageSubmit(message) {
-            this.socket.emit('sendMsg', message)
             this.messages.push(message);
         },
     }
