@@ -11,7 +11,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'WebSocket Bootcamp',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -25,15 +25,13 @@ export default {
   /*
   ** Global CSS
   */
-  css: [
-  ],
+  css: ['~/assets/style.css'],
 
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
-  plugins: [
-  ],
+  plugins: [],
 
   /*
   ** Auto import components
@@ -54,14 +52,15 @@ export default {
   */
   modules: [
     // Doc: https://http.nuxtjs.org
-    '@nuxt/http'
+    '@nuxtjs/axios',
+
   ],
 
   /*
   ** Server Middleware
   */
   serverMiddleware: {
-    '/api': '~/api'
+    '/ws': '~/api'
   },
 
   /*
@@ -77,5 +76,16 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-  }
+    babel:{
+      plugins: [
+        
+          ["@babel/plugin-proposal-class-properties", { "loose": true }],
+          ["@babel/plugin-proposal-private-methods", { "loose": true }],
+          ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+        
+      ]
+    }
+  },
+
+
 }
