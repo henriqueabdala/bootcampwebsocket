@@ -27,7 +27,6 @@
 /* eslint-disable */
 import { Chat } from 'vue-quick-chat'
 import 'vue-quick-chat/dist/vue-quick-chat.css'
-import { io } from 'socket.io-client'
 import defaultConfigVueQuick from '~/assets/default-config-chat.js'
 export default {
     components: {
